@@ -1,12 +1,18 @@
-﻿using System;
+﻿///////////////////////////////////////////////////////////////////////////////
+//  Calculator
+//
+//  Copyright (c) 2019, Alonso R.
+//  License GNU Affero v3
+
+using System;
 using Presenter;
+using Resources;
 
 namespace View
 {
     public class MainView: IMainView
     {
         private readonly IOperationPresenter _presenter;
-        private Model.Operation operation;
 
         public MainView()
         {
@@ -33,45 +39,47 @@ namespace View
                 try
                 {
                     Console.Clear();
-                    Console.WriteLine(" *** C A L C U L A T O R    0.1a *** ");
-                    Console.WriteLine("Select an option:\n1.  Addition\n2.  Substraction\n3.  Multiplication\n4.  Division");
+                    Console.WriteLine(Resource.HEADER);
+                    Console.WriteLine(Resource.MENU.Replace("\\n", "\n"));
                     int option = int.Parse(Console.ReadLine());
 
                     if ( option >= 1 && option < 5 )
                     {
-                        operation = new Model.Operation();
-
-                        Console.WriteLine("Insert data (x , y):");
+                        Console.WriteLine(Resource.PRE_VALUES);
                         Console.Write("X = ");
-                        operation.operator1 = double.Parse(Console.ReadLine());
+                        double x = double.Parse(Console.ReadLine());
                         Console.Write("Y = ");
-                        operation.operator2 = double.Parse(Console.ReadLine());
+                        double y = double.Parse(Console.ReadLine());
                         Console.Clear();
 
                         switch (option)
                         {
                             case 1:
-                                _presenter.Addition(operation);
+                                _presenter.Addition(x, y);
                                 break;
                             case 2:
-                                _presenter.Substraction(operation);
+                                _presenter.Substraction(x, y);
                                 break;
                             case 3:
-                                _presenter.Multiplication(operation);
+                                _presenter.Multiplication(x, y);
                                 break;
                             case 4:
-                                _presenter.Division(operation);
+                                _presenter.Division(x, y);
                                 break;
                             default:
-                                throw new Exception("Select a valid option.");
+                                throw new Exception(Resource.GENERIC_ERROR);
                         }
+                    }
+                    else if ( option == 5 )
+                    {
+                        _presenter.ShowInformation();
                     }
 
                     string response;
 
                     do
                     {
-                        Console.WriteLine("Do you want to do another operation? (Y\\n)");
+                        Console.WriteLine(Resource.LOOP_QUESTION);
                         response = Console.ReadLine();
 
                         if (response.ToLower() == "y" || response.ToLower() == "n")
@@ -80,13 +88,13 @@ namespace View
                         }
                         else
                         {
-                            Console.WriteLine("Select a valid option.");
+                            Console.WriteLine(Resource.GENERIC_ERROR);
                         }
                     } while (response == null && (response != "y" || response != "n"));
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine($"ERROR: {e.Message}");
+                    Console.WriteLine(string.Format(Resource.ERROR, e.Message));
                     Console.ReadLine();
                     OUTPUT = true;
                     continue;

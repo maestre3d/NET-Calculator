@@ -1,4 +1,10 @@
-﻿namespace Model
+﻿///////////////////////////////////////////////////////////////////////////////
+//  Calculator
+//
+//  Copyright (c) 2019, Alonso R.
+//  License GNU Affero v3
+
+namespace Model
 {
     public class Operation
     {
