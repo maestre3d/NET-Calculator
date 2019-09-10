@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select an option:\n1.  Addition\n2.  Substraction\n3.  Multiplication\n4.  Division\n5. Show info.
+        ///   Looks up a localized string similar to Select an option:\n1.  Addition\n2.  Substraction\n3.  Multiplication\n4.  Division\n5.  Show info.
         /// </summary>
         public static string MENU {
             get {

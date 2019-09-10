@@ -43,39 +43,40 @@ namespace View
                     Console.WriteLine(Resource.MENU.Replace("\\n", "\n"));
                     int option = int.Parse(Console.ReadLine());
 
+                    double x = 0, y = 0;
+
                     if ( option >= 1 && option < 5 )
                     {
                         Console.WriteLine(Resource.PRE_VALUES);
                         Console.Write("X = ");
-                        double x = double.Parse(Console.ReadLine());
+                        x = double.Parse(Console.ReadLine());
                         Console.Write("Y = ");
-                        double y = double.Parse(Console.ReadLine());
+                        y = double.Parse(Console.ReadLine());
                         Console.Clear();
-
-                        switch (option)
-                        {
-                            case 1:
-                                _presenter.Addition(x, y);
-                                break;
-                            case 2:
-                                _presenter.Substraction(x, y);
-                                break;
-                            case 3:
-                                _presenter.Multiplication(x, y);
-                                break;
-                            case 4:
-                                _presenter.Division(x, y);
-                                break;
-                            default:
-                                throw new Exception(Resource.GENERIC_ERROR);
-                        }
                     }
-                    else if ( option == 5 )
+
+                    switch (option)
                     {
-                        _presenter.ShowInformation();
+                        case 1:
+                            _presenter.Addition(x, y);
+                            break;
+                        case 2:
+                            _presenter.Substraction(x, y);
+                            break;
+                        case 3:
+                            _presenter.Multiplication(x, y);
+                            break;
+                        case 4:
+                            _presenter.Division(x, y);
+                            break;
+                        case 5:
+                            _presenter.ShowInformation();
+                            break;
+                        default:
+                            throw new Exception(Resource.GENERIC_ERROR);
                     }
 
-                    string response;
+                    string response = string.Empty;
 
                     do
                     {
@@ -90,7 +91,7 @@ namespace View
                         {
                             Console.WriteLine(Resource.GENERIC_ERROR);
                         }
-                    } while (response == null && (response != "y" || response != "n"));
+                    } while (response.Length == 0 || (response != "y" && response != "n"));
                 }
                 catch (Exception e)
                 {

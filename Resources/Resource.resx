@@ -133,7 +133,7 @@
     <comment>Question for repeat loop</comment>
   </data>
   <data name="MENU" xml:space="preserve">
-    <value>Select an option:\n1.  Addition\n2.  Substraction\n3.  Multiplication\n4.  Division\n5. Show info</value>
+    <value>Select an option:\n1.  Addition\n2.  Substraction\n3.  Multiplication\n4.  Division\n5.  Show info</value>
     <comment>Menu</comment>
   </data>
   <data name="PRE_VALUES" xml:space="preserve">
